@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(251,251,251);
+  font-family: sans-serif;
+}
+
+@media (min-width: 620px) {
+  body {
+    /* background-color: tomato; */
+  }
+}
+
+@media (min-width: 900px) {
+  body {
+    /* background-color: dodgerblue; */
+  }
+}
