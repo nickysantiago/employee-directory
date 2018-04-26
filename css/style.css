@@ -3,7 +3,126 @@ body {
   font-family: sans-serif;
 }
 
-@media (min-width: 620px) {
+header,
+footer {
+  text-align: center;
+}
+
+img {
+  border-radius: 50%;
+}
+
+input {
+  display: block;
+  padding: 5px;
+  margin: 0 auto;
+  border: rgb(230,230,230) 1px solid;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.header-title {
+  margin: 5% 0 10% 0;
+  font-size: 1.3em;
+  font-weight: lighter;
+  text-transform: uppercase;
+  color: rgb(80,80,80);
+}
+
+.wrapper {
+  padding: 5%;
+}
+
+.employee-search {
+  margin-bottom: 25px;
+}
+
+.employees {
+  padding: 0 0 10% 0%;
+}
+
+.small-card:not(:last-child) {
+  margin-bottom: 7%;
+}
+
+.small-card {
+  border: rgb(230,230,230) 2px solid;
+  border-radius: 8px;
+  padding: 5%;
+  background-color: white;
+  width: 0 auto;
+}
+
+.name {
+  text-transform: capitalize;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rgb(70,70,70);
+}
+
+.email,
+.city {
+  margin-top: 10px;
+  color: grey;
+}
+
+.city {
+  text-transform: capitalize;
+}
+
+.gallery {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(20,20,20,0.5);
+  display: none;
+}
+
+.big-card {
+  position: fixed;
+  width: 0 auto;
+  top: 80px;
+  left: 15px;
+  right: 15px;
+  border-radius: 8px;
+  background-color: white;
+  padding: 5% 8% 8% 8%;
+}
+
+.button {
+  text-align: center;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.close-button {
+  display: block;
+  margin-left: 40%;
+  font-size: 1.1em;
+  color: grey;
+}
+
+.nav-buttons {
+  position: fixed;
+  top: 450px;
+  left: 36%;
+}
+
+.nav-button {
+  font-size: 1.5em;
+  font-weight: lighter;
+  background-color: white;
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 10px;
+  color: grey;
+}
+
+@media (min-width: 600px) {
   body {
     /* background-color: tomato; */
   }
