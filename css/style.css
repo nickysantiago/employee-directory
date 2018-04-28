@@ -5,20 +5,37 @@ body {
 
 header,
 footer {
+  justify-content: center;
   text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
 }
 
 img {
   border-radius: 50%;
+  margin: auto;
 }
 
 input {
-  display: block;
-  padding: 5px;
-  margin: 0 auto;
+  align-self: center;
+  padding: 7px;
   border: rgb(230,230,230) 1px solid;
   border-radius: 5px;
   text-align: center;
+  font-size: 1.2em;
+}
+
+input:focus {
+  outline: none;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+footer {
+  margin-top: auto;
 }
 
 .header-title {
@@ -31,85 +48,133 @@ input {
 
 .wrapper {
   padding: 5%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .employee-search {
-  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6vh;
 }
 
 .employees {
-  padding: 0 0 10% 0%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
+}
+
+.small-card {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  border: rgb(230,230,230) 2px solid;
+  border-radius: 8px;
+  padding: 3%;
+  background-color: white;
 }
 
 .small-card:not(:last-child) {
   margin-bottom: 7%;
 }
 
-.small-card {
-  border: rgb(230,230,230) 2px solid;
-  border-radius: 8px;
-  padding: 5%;
-  background-color: white;
-  width: 0 auto;
+.small-card .brief-info {
+  text-align: justify;
+}
+
+.brief-info {
+  margin: 6px auto;
+  text-align: center;
 }
 
 .name {
   text-transform: capitalize;
-  font-size: 1.2em;
   font-weight: bold;
   color: rgb(70,70,70);
 }
 
 .email,
-.city {
+.city,
+.phone,
+.address,
+.birthday {
   margin-top: 10px;
-  color: grey;
+  color: rgb(180,180,180);
 }
 
-.city {
+.city,
+.address {
   text-transform: capitalize;
 }
 
+.birthday {
+  display: inline-flex;
+}
+
 .gallery {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgba(20,20,20,0.5);
-  display: none;
+}
+
+.big-cards {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin: auto;
+  min-height: 40vh;
+  max-height: 80vh;
+  min-width: 60vw;
+  max-width: 90vw;
 }
 
 .big-card {
-  position: fixed;
-  width: 0 auto;
-  top: 80px;
-  left: 15px;
-  right: 15px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
   border-radius: 8px;
   background-color: white;
   padding: 5% 8% 8% 8%;
-}
-
-.button {
-  text-align: center;
 }
 
 .button:focus {
   outline: none;
 }
 
+.close-button:hover,
+.close-button:active {
+  background-color: tomato;
+  color: white;
+}
+
 .close-button {
-  display: block;
-  margin-left: 40%;
+  width: 37px;
+  height: 35px;
+  margin-left: auto;
+  border: 1px rgb(235,235,235) solid;
+  border-radius: 20px;
+  text-align: center;
   font-size: 1.1em;
   color: grey;
+  background-color: white;
+}
+
+.extended-info {
+  text-align: center;
+  margin: 10px auto;
+  padding-top: 5px;
+  border-top: 1px rgb(240,240,240) solid;
 }
 
 .nav-buttons {
-  position: fixed;
-  top: 450px;
-  left: 36%;
+  margin: auto;
 }
 
 .nav-button {
@@ -122,14 +187,86 @@ input {
   color: grey;
 }
 
-@media (min-width: 600px) {
-  body {
-    /* background-color: tomato; */
+.nav-button:hover,
+.nav-button:active {
+  color: tomato;
+}
+
+
+
+@media (min-width: 768px) {
+  input {
+    padding: 10px;
+    font-size: 1.4em;
+  }
+
+  .small-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .small-card {
+    width: 40%;
+    margin-top: 0;
+    margin-bottom: 3%;
+  }
+
+  .small-card:last-child {
+    margin-bottom: auto;
+  }
+
+  .nav-button {
+    padding: 8px 13px;
   }
 }
 
-@media (min-width: 900px) {
-  body {
-    /* background-color: dodgerblue; */
+@media (min-width: 1024px) {
+  input {
+    padding: 12px;
+    font-size: 2vw;
+  }
+
+  .wrapper {
+    padding: 2%;
+    max-width: 1300px;
+  }
+
+  .header-title {
+    margin: 2% 0 5% 0;
+    font-size: 1.7em;
+  }
+
+  .employees {
+    padding-bottom: 2%;
+  }
+
+  .small-card {
+    flex-direction: row;
+    width: 30%;
+    padding: 2% 1%;
+    margin-bottom: 3%;
+  }
+
+  .small-cards {
+    justify-content: space-between;
+  }
+
+  .brief-info {
+    font-size: 1.2vw;
+    align-self: center;
+  }
+
+  .big-card {
+    padding: 2% 5% 5% 5%;
+  }
+
+  .extended-info {
+    font-size: 1.2vw;
+  }
+
+  .nav-button {
+    padding: 10px 15px;
   }
 }

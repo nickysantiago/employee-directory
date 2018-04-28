@@ -1,7 +1,7 @@
 /*
-  When page finishes loading, append search bar
-  create and send AJAX request, format the response,
-  and append it to the page.
+  When page finishes loading, create and send AJAX request,
+  format the response, append it to the page, and hide the
+  div with the gallery and big cards.
 */
 $(document).ready(function() {
   const url = "https://randomuser.me/api/?results=12&nat=us";
@@ -9,6 +9,10 @@ $(document).ready(function() {
     $('main').prepend(createSearchInput());
     $('.employees').html(createListOfSmallCards(data.results));
     $('.gallery').html(createListOfBigCards(data.results) + createGalleryButtons());
+    $('.gallery .big-cards .big-card').each(function() {
+      $(this).hide();
+    });
+    $('.gallery').hide();
   };
   $.getJSON(url, callback);
 });
@@ -32,10 +36,12 @@ const createListOfSmallCards = function(dataArray) {
   dataArray.forEach(function(employee){
     html += `<li class="small-card">`;
     html += `<img src="${employee.picture.large}" alt="Employee profile picture"/>`;
+    html += `<div class="brief-info">`;
     html += `<p class="name">${employee.name.first} ${employee.name.last}</p>`;
     html += `<p class="email">${employee.email}</p>`;
     html += `<p class="city">${employee.location.city}</p>`;
     html += `<p class="username" style="display: none">${employee.login.username}</p>`;
+    html += `</div>`;
     html += `</li>`;
   });
   html += `</ul>`;
@@ -49,15 +55,20 @@ const createListOfSmallCards = function(dataArray) {
 const createListOfBigCards = function(dataArray) {
   let html = `<ul class="big-cards">`; //style="display: none"
   dataArray.forEach(function(employee){
-    html += `<li class="big-card" style="display: none">`;
+    html += `<li class="big-card">`;
     html += `<button class="button close-button">x</button>`;
     html += `<img src="${employee.picture.large}" alt="Employee profile picture"/>`;
+    html += `<div class="brief-info">`;
     html += `<p class="name">${employee.name.first} ${employee.name.last}</p>`;
     html += `<p class="email">${employee.email}</p>`;
     html += `<p class="city">${employee.location.city}</p>`;
+    html += `</div>`;
+    html += `<div class="extended-info">`;
     html += `<p class="phone">${employee.phone}</p>`;
     html += `<p class="address">${employee.location.street}, ${employee.location.state} ${employee.location.postcode}</p>`;
-    html += `<p class="birthday">Birthday: ${employee.dob}</p>`;
+    html += `<p class="birthday">Birthday:
+            ${employee.dob.substr(5,2)}/${employee.dob.substr(8,2)}/${employee.dob.substr(0,4)}</p>`;
+    html += `</div>`;
     html += `</li>`;
   });
   html += `</ul>`;
@@ -86,8 +97,10 @@ $('.employees').on('click', '.small-card', function(event) {
     $('.gallery').show();
     // Loop through each big card
     $('.big-card').each(function() {
+      const nameOnBigCard = $(this).children('.brief-info').children('.name').text();
+      const nameOnSmallCard = $(event.currentTarget).children('.brief-info').children('.name').text();
       // If the name of the big card equals the name of the small card that was clicked on
-      if( $(this).children('.name').text() === $(event.currentTarget).children('.name').text() ) {
+      if( nameOnBigCard === nameOnSmallCard ) {
         $(this).show();
         return;
       }
@@ -138,8 +151,8 @@ $('main').on('keyup', 'input', function(event) {
     const inputText = $(event.target).val().toLowerCase();
     // Loop through the array of small cards
     $('.small-card').each(function() {
-      const $employeeName = $(this).children('.name').text();
-      const $employeeUserName = $(this).children('.username').text();
+      const $employeeName = $(this).children('.brief-info').children('.name').text();
+      const $employeeUserName = $(this).children('.brief-info').children('.username').text();
       // Hide those whose name and username don't match
       if(!$employeeName.includes(inputText) && !$employeeUserName.includes(inputText)) {
         $(this).fadeOut(200);
