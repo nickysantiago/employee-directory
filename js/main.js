@@ -66,8 +66,9 @@ const createListOfBigCards = function(dataArray) {
     html += `<div class="extended-info">`;
     html += `<p class="phone">${employee.phone}</p>`;
     html += `<p class="address">${employee.location.street}, ${employee.location.state} ${employee.location.postcode}</p>`;
-    html += `<p class="birthday">Birthday:
-            ${employee.dob.substr(5,2)}/${employee.dob.substr(8,2)}/${employee.dob.substr(0,4)}</p>`;
+    // employee.dob.substr is NOT a function, breaks the code :( 
+    // html += `<p class="birthday">Birthday:
+    //         ${employee.dob.substr(5,2)}/${employee.dob.substr(8,2)}/${employee.dob.substr(0,4)}</p>`;
     html += `</div>`;
     html += `</li>`;
   });
